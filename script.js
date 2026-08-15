@@ -167,7 +167,7 @@ if (precisePointer.matches && !reduceMotion) {
   document.documentElement.addEventListener('mouseleave', () => travelCursor.classList.remove('is-visible'));
 }
 
-const secretSequence = ['ArrowLeft', 'ArrowRight', 'Alt', 'Enter'];
+const secretSequence = ['ArrowLeft', 'ArrowRight', 'Shift', 'Enter'];
 const shipStatus = document.querySelector('.kickass-status');
 const shipStatusTitle = shipStatus.querySelector('span');
 const shipStatusProgress = shipStatus.querySelector('strong');
