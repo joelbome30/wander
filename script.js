@@ -1,7 +1,13 @@
 const header = document.querySelector('.site-header');
 const menuButton = document.querySelector('.menu-button');
+const progressBar = document.querySelector('.scroll-progress i');
 
-function updateHeader() { header.classList.toggle('scrolled', window.scrollY > 40); }
+function updateHeader() {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0;
+  progressBar.style.transform = `scaleX(${progress})`;
+}
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
 
@@ -15,6 +21,14 @@ const observer = new IntersectionObserver(entries => entries.forEach(entry => {
   if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
 }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(item => observer.observe(item));
+
+const journeyLinks = [...document.querySelectorAll('.journey-rail a')];
+const journeyObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+  if (!entry.isIntersecting) return;
+  journeyLinks.forEach(link => link.classList.toggle('is-active', link.dataset.section === entry.target.id));
+}), { rootMargin: '-32% 0px -58%', threshold: 0 });
+document.querySelectorAll('main > section[id]').forEach(section => journeyObserver.observe(section));
+journeyLinks[0]?.classList.add('is-active');
 
 const hero = document.querySelector('.hero');
 let heroFrame;
@@ -139,3 +153,16 @@ form.addEventListener('submit', event => {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
   form.reset();
 });
+
+const travelCursor = document.querySelector('.travel-cursor');
+const precisePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+if (precisePointer.matches && !reduceMotion) {
+  document.body.classList.add('cursor-ready');
+  document.addEventListener('pointermove', event => {
+    travelCursor.style.transform = `translate3d(${event.clientX - 17}px,${event.clientY - 17}px,0)`;
+    travelCursor.classList.add('is-visible');
+    const interactive = event.target.closest('a, button, input, select, textarea, .destination-card, .review-card');
+    travelCursor.classList.toggle('is-active', Boolean(interactive));
+  }, { passive: true });
+  document.documentElement.addEventListener('mouseleave', () => travelCursor.classList.remove('is-visible'));
+}

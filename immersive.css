@@ -108,3 +108,24 @@
 footer{grid-template-columns:1fr 1fr auto}
 @keyframes destinationPicked{50%{box-shadow:0 8px 0 -6px rgba(237,112,93,.45)}}
 @media(max-width:850px){footer{grid-template-columns:1fr;contain-intrinsic-size:auto 230px}.manifesto,.testimonials,.contact{contain-intrinsic-size:auto 900px}}
+
+/* Spatial travel system — inspired by the interaction language of Joel's 3D portfolio. */
+.destination-card:nth-child(1),.destination-card:nth-child(2),.destination-card:nth-child(3){margin-top:0}
+.destination-card:nth-child(1){border-radius:220px 220px 18px 18px}
+.destination-card:nth-child(2){border-radius:0;clip-path:polygon(0 0,calc(100% - 46px) 0,100% 46px,100% 100%,46px 100%,0 calc(100% - 46px))}
+.destination-card:nth-child(3){border-radius:999px}
+.destination-card:nth-child(3) .card-top{inset:68px 54px auto}
+.destination-card:nth-child(3) .card-content{left:55px;right:55px;bottom:70px}
+.destination-card:nth-child(3) .card-reveal{inset:auto 42px 72px}
+.destination-card:nth-child(2):focus-visible{outline-offset:0}
+
+.wander-grain{position:fixed;z-index:61;inset:-28%;pointer-events:none;opacity:.026;background-image:repeating-radial-gradient(circle at 17% 23%,#fff 0 .42px,transparent .58px 3px),repeating-linear-gradient(91deg,transparent 0 5px,#193b3d 6px 6.5px);background-size:9px 10px,13px 15px;mix-blend-mode:soft-light;animation:wanderGrain .3s steps(2) infinite;will-change:transform}
+.scroll-progress{position:fixed;z-index:90;inset:0 0 auto;height:2px;background:rgba(255,255,255,.08);pointer-events:none}.scroll-progress i{display:block;width:100%;height:100%;background:linear-gradient(90deg,var(--coral),#f5b49d,var(--sky));transform:scaleX(0);transform-origin:left;will-change:transform}
+.travel-cursor{position:fixed;z-index:120;left:0;top:0;width:34px;height:34px;border:1px solid rgba(237,112,93,.75);border-radius:50%;pointer-events:none;opacity:0;transform:translate3d(-60px,-60px,0);transition:width .2s ease,height .2s ease,margin .2s ease,background .2s ease,border-color .2s ease,opacity .2s ease;mix-blend-mode:difference}.travel-cursor i{position:absolute;left:50%;top:50%;width:4px;height:4px;border-radius:50%;background:white;transform:translate(-50%,-50%)}.travel-cursor.is-visible{opacity:1}.travel-cursor.is-active{width:52px;height:52px;margin:-9px 0 0 -9px;background:rgba(255,255,255,.14);border-color:white}
+.cursor-ready,.cursor-ready a,.cursor-ready button,.cursor-ready select{cursor:none}
+.journey-rail{position:fixed;z-index:44;right:20px;top:50%;display:grid;gap:13px;transform:translateY(-50%)}.journey-rail a{height:18px;display:flex;align-items:center;justify-content:flex-end;gap:8px;color:#698082;opacity:.46;transition:opacity .25s ease,color .25s ease,transform .25s ease}.journey-rail span,.journey-rail strong{font:600 7px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase}.journey-rail strong{width:0;overflow:hidden;white-space:nowrap;opacity:0;transition:width .25s ease,opacity .25s ease}.journey-rail i{width:15px;border-top:1px solid;transition:width .25s ease}.journey-rail a:hover,.journey-rail a.is-active{color:var(--coral);opacity:1;transform:translateX(-3px)}.journey-rail a:hover strong,.journey-rail a.is-active strong{width:48px;opacity:1}.journey-rail a.is-active i{width:28px;box-shadow:0 0 9px currentColor}
+.hero-status{position:absolute;z-index:4;right:5vw;bottom:34px;display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.7);font:600 8px Manrope,sans-serif;letter-spacing:.18em}.hero-status i{width:42px;border-top:1px solid var(--coral);box-shadow:0 0 8px rgba(237,112,93,.7)}
+@keyframes wanderGrain{0%{transform:translate3d(-1.3%,1%,0)}50%{transform:translate3d(1.1%,-.8%,0)}100%{transform:translate3d(.4%,1.2%,0)}}
+@media(max-width:1100px){.journey-rail{display:none}}
+@media(max-width:850px){.destination-card:nth-child(1){border-radius:180px 180px 16px 16px}.destination-card:nth-child(2){clip-path:polygon(0 0,calc(100% - 34px) 0,100% 34px,100% 100%,34px 100%,0 calc(100% - 34px))}.destination-card:nth-child(3){border-radius:999px}.destination-card:nth-child(3) .card-top{inset:55px 42px auto}.destination-card:nth-child(3) .card-content{left:44px;right:44px;bottom:58px}.hero-status,.travel-cursor,.wander-grain{display:none}.cursor-ready,.cursor-ready a,.cursor-ready button,.cursor-ready select{cursor:auto}}
+@media(prefers-reduced-motion:reduce){.wander-grain{display:none}.travel-cursor{transition:none}}
