@@ -167,7 +167,7 @@ if (precisePointer.matches && !reduceMotion) {
   document.documentElement.addEventListener('mouseleave', () => travelCursor.classList.remove('is-visible'));
 }
 
-const secretCombination = ['ArrowLeft', 'ArrowRight', 'Shift', 'Enter'];
+const secretCombination = ['Alt', 'Control', 'Shift', 'KeyS'];
 const shipStatus = document.querySelector('.kickass-status');
 const shipStatusTitle = shipStatus.querySelector('span');
 const shipStatusProgress = shipStatus.querySelector('strong');
@@ -176,6 +176,12 @@ const heldSecretKeys = new Set();
 let combinationLatched = false;
 let shipLaunching = false;
 let statusTimer;
+
+function getSecretKey(event) {
+  if (event.code === 'KeyS') return 'KeyS';
+  if (event.key === 'Alt' || event.key === 'Control' || event.key === 'Shift') return event.key;
+  return null;
+}
 
 function renderSecretProgress() {
   shipStatusTitle.textContent = 'NAVE SECRETA';
@@ -228,10 +234,11 @@ document.addEventListener('keydown', event => {
     return;
   }
   if ((event.target instanceof Element && event.target.matches('input, textarea, select')) || window.KICKASSGAME || shipLaunching) return;
-  if (!secretCombination.includes(event.key)) return;
+  const secretKey = getSecretKey(event);
+  if (!secretKey) return;
   event.preventDefault();
   if (event.repeat) return;
-  heldSecretKeys.add(event.key);
+  heldSecretKeys.add(secretKey);
   renderSecretProgress();
   if (!combinationLatched && secretCombination.every(key => heldSecretKeys.has(key))) {
     combinationLatched = true;
@@ -240,8 +247,9 @@ document.addEventListener('keydown', event => {
 }, true);
 
 document.addEventListener('keyup', event => {
-  if (!secretCombination.includes(event.key)) return;
-  heldSecretKeys.delete(event.key);
+  const secretKey = getSecretKey(event);
+  if (!secretKey) return;
+  heldSecretKeys.delete(secretKey);
   if (combinationLatched || shipLaunching || window.KICKASSGAME) {
     if (!heldSecretKeys.size) combinationLatched = false;
     return;
