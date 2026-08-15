@@ -166,3 +166,87 @@ if (precisePointer.matches && !reduceMotion) {
   }, { passive: true });
   document.documentElement.addEventListener('mouseleave', () => travelCursor.classList.remove('is-visible'));
 }
+
+const secretSequence = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Alt', 'Enter'];
+const shipStatus = document.querySelector('.kickass-status');
+const shipStatusTitle = shipStatus.querySelector('span');
+const shipStatusProgress = shipStatus.querySelector('strong');
+const shipStatusCopy = shipStatus.querySelector('small');
+let secretIndex = 0;
+let secretTimer;
+let statusTimer;
+
+function renderSecretProgress() {
+  shipStatusTitle.textContent = 'NAVE SECRETA';
+  shipStatusCopy.textContent = 'SECUENCIA DETECTADA';
+  shipStatus.classList.remove('is-launched');
+  shipStatusProgress.textContent = secretSequence.map((_, index) => index < secretIndex ? '●' : '◌').join(' ');
+  shipStatus.classList.add('is-visible');
+}
+
+function resetSecretSequence(hide = true) {
+  secretIndex = 0;
+  clearTimeout(secretTimer);
+  shipStatusProgress.textContent = '◌ ◌ ◌ ◌ ◌ ◌';
+  if (hide) shipStatus.classList.remove('is-visible');
+}
+
+function showShipMessage(title, copy, launched = false) {
+  clearTimeout(statusTimer);
+  shipStatusTitle.textContent = title;
+  shipStatusCopy.textContent = copy;
+  shipStatus.classList.toggle('is-launched', launched);
+  shipStatus.classList.add('is-visible');
+  statusTimer = setTimeout(() => shipStatus.classList.remove('is-visible'), 5200);
+}
+
+function launchDestroyerShip() {
+  if (window.KICKASSGAME) {
+    showShipMessage('NAVE YA DESPLEGADA', 'FLECHAS + ESPACIO · ESC PARA SALIR', true);
+    return;
+  }
+  document.querySelector('#kickass-secret-loader')?.remove();
+  showShipMessage('ABRIENDO HANGAR', 'CONECTANDO CON KICK ASS…');
+  window.KICKASSVERSION = '2.0';
+  const loader = document.createElement('script');
+  loader.id = 'kickass-secret-loader';
+  loader.src = 'https://hi.kickassapp.com/kickass.js';
+  loader.async = true;
+  loader.onload = () => {
+    document.body.classList.add('kickass-active');
+    showShipMessage('NAVE DESTRUCTORA ACTIVADA', 'FLECHAS PARA VOLAR · ESPACIO PARA DISPARAR · ESC PARA SALIR', true);
+  };
+  loader.onerror = () => showShipMessage('NO SE PUDO ABRIR EL HANGAR', 'REVISA TU CONEXIÓN E INTENTA LA SECUENCIA OTRA VEZ');
+  document.body.appendChild(loader);
+}
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && document.body.classList.contains('kickass-active')) {
+    setTimeout(() => {
+      document.body.classList.remove('kickass-active');
+      showShipMessage('NAVE GUARDADA', 'EL SITIO VOLVIÓ A LA NORMALIDAD');
+    }, 80);
+    return;
+  }
+  if (event.repeat || (event.target instanceof Element && event.target.matches('input, textarea, select')) || window.KICKASSGAME) return;
+  const expectedKey = secretSequence[secretIndex];
+  if (event.key === expectedKey) {
+    event.preventDefault();
+    secretIndex += 1;
+    renderSecretProgress();
+    clearTimeout(secretTimer);
+    secretTimer = setTimeout(() => resetSecretSequence(), 3200);
+    if (secretIndex === secretSequence.length) {
+      resetSecretSequence(false);
+      launchDestroyerShip();
+    }
+    return;
+  }
+  if (event.key === secretSequence[0]) {
+    event.preventDefault();
+    secretIndex = 1;
+    renderSecretProgress();
+    return;
+  }
+  resetSecretSequence();
+}, true);
