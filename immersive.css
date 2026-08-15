@@ -1,5 +1,8 @@
-.hero{--hero-x:0px;--hero-y:0px;overflow:hidden;background:none}
-.hero:before{content:"";position:absolute;inset:-4%;background:url("assets/iceland-hero.webp") center/cover;transform:translate3d(var(--hero-x),var(--hero-y),0) scale(1.06);transition:transform .18s linear;will-change:transform}
+.hero{--hero-x:0px;--hero-y:0px;overflow:hidden;background:none;isolation:isolate}
+.hero:before{content:"";position:absolute;z-index:0;inset:-4%;background:url("assets/iceland-hero.webp") center/cover;transform:translate3d(var(--hero-x),var(--hero-y),0) scale(1.06);transition:transform .18s linear,opacity 1s ease;will-change:transform}
+.hero-video{position:absolute;z-index:0;inset:-3%;width:106%;height:106%;object-fit:cover;opacity:0;filter:saturate(.88) contrast(1.06);transform:translate3d(var(--hero-x),var(--hero-y),0) scale(1.035);transition:opacity 1.2s ease,transform .18s linear;will-change:transform,opacity}
+.hero-video.motion-ready{opacity:1}
+.hero:has(.hero-video.motion-ready):before{opacity:.08}
 .hero-shade{z-index:1}.hero-content,.hero-meta,.scroll-label{z-index:3}
 .hero:after{content:"";position:absolute;z-index:2;inset:0;pointer-events:none;background:radial-gradient(circle at 72% 28%,rgba(255,215,153,.16),transparent 25%);mix-blend-mode:screen;animation:breatheLight 5s ease-in-out infinite alternate}
 .hero-nature{position:absolute;z-index:2;inset:0;overflow:hidden;pointer-events:none}
@@ -8,21 +11,31 @@
 .living-waterfall:before,.living-waterfall:after{content:"";position:absolute;inset:-45% 5%;background:repeating-linear-gradient(93deg,transparent 0 7px,rgba(232,248,255,.62) 8px 9px,transparent 10px 15px);animation:waterFall .62s linear infinite}
 .living-waterfall:after{inset:-35% 18%;opacity:.38;filter:blur(2px);animation-duration:.43s;animation-delay:-.2s}
 .waterfall-mist{position:absolute;left:79.5%;top:52.2%;width:11%;height:6%;border-radius:50%;background:radial-gradient(ellipse,rgba(239,250,250,.38),transparent 67%);filter:blur(9px);animation:mistBreathe 2.7s ease-in-out infinite alternate;mix-blend-mode:screen}
-.wind-grass{position:absolute;bottom:-1%;height:9%;width:45%;opacity:.12;transform-origin:bottom;mask-image:linear-gradient(transparent,#000 55%);background:repeating-linear-gradient(82deg,transparent 0 13px,rgba(162,188,102,.7) 14px 15px,transparent 16px 23px);filter:blur(1.4px);animation:grassSway 2.8s ease-in-out infinite alternate;mix-blend-mode:soft-light}
+.wind-grass{position:absolute;bottom:-2%;height:13%;width:52%;opacity:.26;transform-origin:bottom;mask-image:linear-gradient(transparent,#000 48%);background:repeating-linear-gradient(82deg,transparent 0 10px,rgba(151,188,92,.86) 11px 13px,transparent 14px 21px);filter:blur(.8px);animation:grassSway 2.2s ease-in-out infinite alternate;mix-blend-mode:soft-light}
 .grass-left{left:-3%}.grass-right{right:-4%;animation-delay:-1.4s;animation-duration:3.4s}
 .sun-breath{position:absolute;right:-7%;top:4%;width:45%;height:55%;border-radius:50%;background:radial-gradient(circle,rgba(255,191,113,.18),transparent 63%);animation:sunPulse 6s ease-in-out infinite alternate;mix-blend-mode:screen}
-.destinations{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#faf8f2 0%,#eef2ea 100%)}
+.destinations{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#faf8f2 0%,#e8f0e9 72%,#183638 72.1%,#183638 100%)}
 .destinations:before{content:"";position:absolute;z-index:-1;width:620px;height:620px;right:-260px;top:80px;border-radius:50%;background:url("assets/cabo-verde.webp") center/cover;filter:blur(75px);opacity:.1}
-.destination-track{position:relative;z-index:1;padding:18px 10px 40px;margin-inline:-10px}
-.destination-card{border-radius:220px 220px 4px 4px;box-shadow:0 12px 35px rgba(20,53,54,.1)}
+.destinations:after{content:"VIVE EL DESTINO";position:absolute;z-index:-1;left:-.03em;right:0;bottom:-.07em;color:rgba(255,255,255,.055);font:600 clamp(72px,13vw,210px)/.8 Manrope,sans-serif;letter-spacing:-.08em;white-space:nowrap}
+.destination-track{position:relative;z-index:1;padding:18px 10px 115px;margin-inline:-10px;overflow-y:hidden}
+.destination-track:before{content:"PAISAJES VIVOS  •  MUEVE EL CURSOR PARA MIRAR ALREDEDOR";position:absolute;left:10px;bottom:62px;color:#b8d9d5;font:600 9px Manrope,sans-serif;letter-spacing:.18em}
+.destination-card{border-radius:220px 220px 10px 10px;box-shadow:0 20px 45px rgba(10,39,40,.2);border:1px solid rgba(255,255,255,.22)}
+.destination-card:nth-child(2){margin-top:58px}
+.destination-card:nth-child(3){margin-top:22px}
 .experiences{position:relative;background:linear-gradient(180deg,#eef2ea 0%,#f2eee4 24%)}
 .experiences:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--coral),transparent);opacity:.45}
 .experience{border-radius:4px;box-shadow:0 15px 35px rgba(20,53,54,.12)}
 .contact{position:relative;background:linear-gradient(135deg,#dce9e6,#f3d9cf)}
 .destination-card{--rx:0deg;--ry:0deg;--mx:0px;--my:0px;--glow-x:50%;--glow-y:50%;transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .18s ease-out,box-shadow .35s;will-change:transform}
 .destination-card:hover{box-shadow:0 28px 60px rgba(16,48,50,.28)}
-.destination-card img{transform:scale(1.07) translate3d(var(--mx),var(--my),0);will-change:transform,translate;transition:transform .3s ease-out;animation:landscapeDrift 7s ease-in-out infinite alternate}
-.destination-card:hover img{transform:scale(1.13) translate3d(var(--mx),var(--my),0)}
+.scene-media{position:absolute;z-index:0;inset:-2%;overflow:hidden;background:#123638;transform:translate3d(var(--mx),var(--my),0) scale(1.055);transition:transform .35s ease-out;will-change:transform}
+.scene-media img,.scene-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1s ease,transform 1.2s cubic-bezier(.2,.8,.2,1);will-change:opacity,transform}
+.scene-media img{opacity:1;transform:scale(1.03)}
+.scene-media video{opacity:0;transform:scale(1.015)}
+.scene-media:has(video.motion-ready) img{opacity:0}
+.scene-media video.motion-ready{opacity:1}
+.destination-card:hover .scene-media{transform:translate3d(var(--mx),var(--my),0) scale(1.095)}
+.destination-card:hover .scene-media video,.destination-card:hover .scene-media img{transform:scale(1.045)}
 .destination-card:before{content:"";position:absolute;z-index:2;inset:0;pointer-events:none;background:radial-gradient(circle at var(--glow-x) var(--glow-y),rgba(255,255,255,.24),transparent 30%);mix-blend-mode:soft-light}
 .card-top,.card-content,.card-reveal{transform:translateZ(28px)}
 .destination-card:hover .card-content{transform:translateZ(28px) translateY(-125px)}
@@ -32,8 +45,15 @@
 [data-scene="rain"] .scene-atmosphere i{width:1px;height:34px;top:-40px;background:linear-gradient(transparent,rgba(205,231,255,.65));transform:rotate(12deg);animation:cityRain var(--speed) linear var(--delay) infinite}
 [data-scene="ocean"] .scene-atmosphere i{width:65px;height:65px;left:-80px;border-radius:50%;background:rgba(255,255,255,.1);filter:blur(12px);animation:oceanMist var(--speed) ease-in-out var(--delay) infinite}
 [data-scene="tropical"] .scene-atmosphere i{width:5px;height:5px;border-radius:50%;background:#ffd79a;box-shadow:0 0 10px #ffe4a9;animation:tropicalGlow var(--speed) ease-in-out var(--delay) infinite}
+[data-scene="ocean"]:before{background:linear-gradient(0deg,rgba(4,30,34,.9),transparent 55%),linear-gradient(115deg,transparent 48%,rgba(169,242,236,.2) 50%,transparent 52%);background-size:auto,220% 100%;animation:oceanShimmer 7s linear infinite}
+[data-scene="tropical"]:before{background:radial-gradient(circle at 76% 12%,rgba(255,220,157,.34),transparent 25%),linear-gradient(0deg,rgba(45,20,16,.78),transparent 55%);animation:caribbeanSun 4.5s ease-in-out infinite alternate}
+[data-scene="rain"]:before{background:linear-gradient(0deg,rgba(7,15,31,.92),transparent 58%),linear-gradient(112deg,transparent 20%,rgba(88,202,255,.16) 22%,transparent 26%,transparent 62%,rgba(255,51,144,.13) 65%,transparent 69%);background-size:auto,180% 100%;animation:neonSweep 5.5s linear infinite}
+.live-label{color:#bfffd5;text-shadow:0 0 10px rgba(101,255,158,.7);animation:livePulse 1.5s ease-in-out infinite}
 .experience{--ex:0px;--ey:0px}.experience-bg{transform:scale(1.08) translate3d(var(--ex),var(--ey),0);will-change:transform,translate;animation:experienceDrift 9s ease-in-out infinite alternate}.experience:hover .experience-bg{transform:scale(1.14) translate3d(var(--ex),var(--ey),0)}
 .exp-adventure{background-image:url("assets/cabo-verde.webp")}.exp-culture{background-image:url("assets/cartagena.webp")}.exp-slow{background-image:url("assets/tokyo.webp");background-position:center 58%}
+.experience-bg video{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease,transform 1s ease;transform:scale(1.02)}
+.experience-bg video.motion-ready{opacity:1}
+.experience:hover .experience-bg video{transform:scale(1.05)}
 @keyframes breatheLight{to{opacity:.45;transform:scale(1.08)}}
 @keyframes cloudTravel{from{transform:translate3d(-10%,0,0)}to{transform:translate3d(55%,4%,0)}}
 @keyframes waterFall{from{transform:translateY(-28%)}to{transform:translateY(38%)}}
@@ -45,5 +65,10 @@
 @keyframes cityRain{from{transform:translate3d(0,-30px,0) rotate(12deg);opacity:0}15%{opacity:.8}to{transform:translate3d(-70px,680px,0) rotate(12deg);opacity:0}}
 @keyframes oceanMist{0%{transform:translate3d(-30px,500px,0);opacity:0}35%{opacity:.7}100%{transform:translate3d(520px,120px,0) scale(2);opacity:0}}
 @keyframes tropicalGlow{0%,100%{transform:translateY(30px);opacity:0}50%{transform:translateY(-40px);opacity:.9}}
+@keyframes oceanShimmer{to{background-position:0 0,-220% 0}}
+@keyframes caribbeanSun{to{filter:saturate(1.3) brightness(1.08)}}
+@keyframes neonSweep{to{background-position:0 0,-180% 0}}
+@keyframes livePulse{50%{opacity:.45}}
 @media(max-width:850px){.hero:before{inset:-2%;transform:scale(1.04)}.destination-card{transform:none!important}.destination-card img{transform:scale(1.05)!important}.scene-atmosphere i:nth-child(n+7){display:none}.wind-grass{height:7%}.living-waterfall,.waterfall-mist{display:none}}
-@media(prefers-reduced-motion:reduce){.hero:before,.destination-card,.destination-card img,.experience-bg{transform:none!important;translate:none!important;transition:none}.scene-atmosphere,.hero-nature{display:none}.hero:after{animation:none}}
+@media(max-width:850px){.hero-video{inset:0;width:100%;height:100%;transform:none}.destinations{background:linear-gradient(180deg,#faf8f2 0%,#e8f0e9 62%,#183638 62.1%)}.destinations .section-intro h2{font-size:clamp(40px,11.6vw,52px);letter-spacing:-.055em}.destination-track{padding-bottom:90px}.destination-card:nth-child(2),.destination-card:nth-child(3){margin-top:0}.destination-track:before{bottom:44px;max-width:75vw;line-height:1.7}.live-label{display:none}}
+@media(prefers-reduced-motion:reduce){.hero:before,.hero-video,.destination-card,.scene-media,.experience-bg{transform:none!important;translate:none!important;transition:none}.scene-atmosphere,.hero-nature{display:none}.hero:after{animation:none}}

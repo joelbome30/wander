@@ -26,6 +26,9 @@
 
   <main>
     <section class="hero" id="inicio">
+      <video class="hero-video motion-video" muted loop playsinline preload="metadata" poster="assets/iceland-hero.webp" aria-hidden="true">
+        <source src="assets/hero-motion.mp4" type="video/mp4">
+      </video>
       <div class="hero-shade"></div>
       <div class="hero-nature" aria-hidden="true">
         <span class="moving-clouds"></span>
@@ -54,20 +57,29 @@
       </div>
       <div class="destination-track" id="destination-track">
         <article class="destination-card reveal" data-scene="ocean">
-          <img src="assets/cabo-verde.webp" alt="Costa volcánica de Santo Antão en Cabo Verde" loading="lazy">
-          <div class="card-top"><span>01</span><span>ÁFRICA</span></div>
+          <div class="scene-media">
+            <img src="assets/cabo-verde.webp" alt="Costa volcánica de Santo Antão en Cabo Verde" loading="lazy">
+            <video class="motion-video" muted loop playsinline preload="none" poster="assets/cabo-verde.webp" aria-hidden="true"><source data-src="assets/ocean-motion.mp4" type="video/mp4"></video>
+          </div>
+          <div class="card-top"><span>01</span><span class="live-label">● EN MOVIMIENTO</span><span>ÁFRICA</span></div>
           <div class="card-content"><p>Cabo Verde</p><h3>Santo Antão</h3><div class="card-details"><span>8 días · 7 noches</span><strong>Desde USD 1.650</strong></div></div>
           <div class="card-reveal"><p>Caminos sobre acantilados, valles verdes y pueblos que miran al Atlántico más profundo.</p><a href="#contacto">Ver itinerario ↗</a></div>
         </article>
         <article class="destination-card reveal" data-scene="tropical">
-          <img src="assets/cartagena.webp" alt="Calle colonial de Cartagena de Indias" loading="lazy">
-          <div class="card-top"><span>02</span><span>SURAMÉRICA</span></div>
+          <div class="scene-media">
+            <img src="assets/cartagena.webp" alt="Calle colonial de Cartagena de Indias" loading="lazy">
+            <video class="motion-video" muted loop playsinline preload="none" poster="assets/cartagena.webp" aria-hidden="true"><source data-src="assets/colonial-motion.mp4" type="video/mp4"></video>
+          </div>
+          <div class="card-top"><span>02</span><span class="live-label">● EN MOVIMIENTO</span><span>SURAMÉRICA</span></div>
           <div class="card-content"><p>Colombia</p><h3>Cartagena</h3><div class="card-details"><span>6 días · 5 noches</span><strong>Desde USD 990</strong></div></div>
           <div class="card-reveal"><p>Balcones floridos, cocina caribeña y tardes doradas recorriendo la ciudad amurallada.</p><a href="#contacto">Ver itinerario ↗</a></div>
         </article>
         <article class="destination-card reveal" data-scene="rain">
-          <img src="assets/tokyo.webp" alt="Tokio iluminado al anochecer después de la lluvia" loading="lazy">
-          <div class="card-top"><span>03</span><span>ASIA</span></div>
+          <div class="scene-media">
+            <img src="assets/tokyo.webp" alt="Tokio iluminado al anochecer después de la lluvia" loading="lazy">
+            <video class="motion-video" muted loop playsinline preload="none" poster="assets/tokyo.webp" aria-hidden="true"><source data-src="assets/tokyo-motion.mp4" type="video/mp4"></video>
+          </div>
+          <div class="card-top"><span>03</span><span class="live-label">● EN MOVIMIENTO</span><span>ASIA</span></div>
           <div class="card-content"><p>Japón</p><h3>Tokio</h3><div class="card-details"><span>9 días · 8 noches</span><strong>Desde USD 2.790</strong></div></div>
           <div class="card-reveal"><p>Arquitectura, sabores nocturnos y barrios que cambian de personalidad en cada estación.</p><a href="#contacto">Ver itinerario ↗</a></div>
         </article>
@@ -84,9 +96,9 @@
     <section class="experiences section" id="experiencias">
       <div class="section-intro reveal"><div><p class="kicker dark">Viaja a tu manera</p><h2>EXPERIENCIAS<br><em>CON PROPÓSITO</em></h2></div></div>
       <div class="experience-grid">
-        <article class="experience experience-large reveal"><div class="experience-bg exp-adventure"></div><span>01</span><div><p>Aventura insular</p><h3>Entre volcanes y mar</h3><a href="#contacto">Explorar experiencias →</a></div></article>
-        <article class="experience reveal"><div class="experience-bg exp-culture"></div><span>02</span><div><p>Cultura caribeña</p><h3>Vive como local</h3><a href="#contacto">Explorar experiencias →</a></div></article>
-        <article class="experience reveal"><div class="experience-bg exp-slow"></div><span>03</span><div><p>Ciudad infinita</p><h3>Tokio de noche</h3><a href="#contacto">Explorar experiencias →</a></div></article>
+        <article class="experience experience-large reveal"><div class="experience-bg exp-adventure"><video class="motion-video" muted loop playsinline preload="none" poster="assets/cabo-verde.webp" aria-hidden="true"><source data-src="assets/ocean-motion.mp4" type="video/mp4"></video></div><span>01</span><div><p>Aventura insular</p><h3>Entre volcanes y mar</h3><a href="#contacto">Explorar experiencias →</a></div></article>
+        <article class="experience reveal"><div class="experience-bg exp-culture"><video class="motion-video" muted loop playsinline preload="none" poster="assets/cartagena.webp" aria-hidden="true"><source data-src="assets/colonial-motion.mp4" type="video/mp4"></video></div><span>02</span><div><p>Cultura caribeña</p><h3>Vive como local</h3><a href="#contacto">Explorar experiencias →</a></div></article>
+        <article class="experience reveal"><div class="experience-bg exp-slow"><video class="motion-video" muted loop playsinline preload="none" poster="assets/tokyo.webp" aria-hidden="true"><source data-src="assets/tokyo-motion.mp4" type="video/mp4"></video></div><span>03</span><div><p>Ciudad infinita</p><h3>Tokio de noche</h3><a href="#contacto">Explorar experiencias →</a></div></article>
       </div>
     </section>
 

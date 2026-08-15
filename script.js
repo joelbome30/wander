@@ -29,6 +29,47 @@ hero.addEventListener('pointermove', event => {
   });
 }, { passive: true });
 
+// Los videos se cargan únicamente cuando están cerca de la pantalla. Así los
+// paisajes se sienten vivos sin descargar todos los clips al abrir la página.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const motionVideos = [...document.querySelectorAll('.motion-video')];
+
+function prepareVideo(video) {
+  if (video.dataset.loaded) return;
+  video.querySelectorAll('source[data-src]').forEach(source => {
+    source.src = source.dataset.src;
+    source.removeAttribute('data-src');
+  });
+  video.dataset.loaded = 'true';
+  video.load();
+}
+
+function showVideo(video) {
+  video.classList.add('motion-ready');
+}
+
+motionVideos.forEach(video => {
+  video.addEventListener('loadeddata', () => showVideo(video), { once: true });
+  if (video.readyState >= 2) showVideo(video);
+});
+
+if (!reduceMotion) {
+  const videoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    const video = entry.target;
+    if (entry.isIntersecting) {
+      prepareVideo(video);
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }), { rootMargin: '320px 0px', threshold: .01 });
+
+  motionVideos.forEach(video => videoObserver.observe(video));
+  document.addEventListener('visibilitychange', () => {
+    motionVideos.forEach(video => document.hidden ? video.pause() : video.play().catch(() => {}));
+  });
+}
+
 document.querySelectorAll('.destination-card').forEach(card => {
   const atmosphere = document.createElement('div');
   atmosphere.className = 'scene-atmosphere';
