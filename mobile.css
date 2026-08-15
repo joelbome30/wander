@@ -1,0 +1,19 @@
+@media (max-width: 850px) {
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: hidden;
+  }
+
+  .hero-meta div {
+    min-width: 0;
+    padding: 12px 8px;
+  }
+
+  .hero-meta strong {
+    font-size: 8px;
+    white-space: nowrap;
+  }
+
+  .hero-meta small { font-size: 7px; }
+}

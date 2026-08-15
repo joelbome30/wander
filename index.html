@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wander diseña viajes memorables, rutas auténticas y experiencias a tu medida.">
+  <meta name="theme-color" content="#16383a">
+  <title>Wander — Viajes que se quedan contigo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="assets/iceland-hero.webp" as="image" type="image/webp">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mobile.css">
+  <link rel="stylesheet" href="immersive.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#inicio" aria-label="Wander, inicio"><span>W</span> wander.</a>
+    <nav aria-label="Navegación principal">
+      <a href="#destinos">Destinos</a><a href="#experiencias">Experiencias</a><a href="#nosotros">Nosotros</a>
+    </nav>
+    <a class="header-cta" href="#contacto">Planea tu viaje <span>↗</span></a>
+    <button class="menu-button" aria-label="Abrir menú" aria-expanded="false"><i></i><i></i></button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-shade"></div>
+      <div class="hero-nature" aria-hidden="true">
+        <span class="moving-clouds"></span>
+        <span class="living-waterfall"></span>
+        <span class="waterfall-mist"></span>
+        <span class="wind-grass grass-left"></span>
+        <span class="wind-grass grass-right"></span>
+        <span class="sun-breath"></span>
+      </div>
+      <div class="hero-content">
+        <p class="kicker hero-in">Islandia</p>
+        <h1 class="hero-in">Viaja a donde quieras<br><em>A bajo costo</em></h1>
+        <p class="hero-description hero-in">En wander no necesitas ser millonario para darte tus vacaciones.</p>
+        <a class="primary-button hero-in" href="#destinos">Descubre tu próximo destino <span>↓</span></a>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Beneficios">
+      <span>✦ Viajes a tu medida</span><span>✦ Guías locales</span><span>✦ Asistencia 24/7</span><span>✦ Grupos pequeños</span>
+    </section>
+
+    <section class="destinations section" id="destinos">
+      <div class="section-intro reveal">
+        <div><p class="kicker dark">Explora</p><h2>LUGARES<br><em>INTERESANTES</em></h2></div>
+        <div class="intro-side"><p>Una selección de lugares que despiertan algo en ti. Elige el destino; nosotros diseñamos el resto.</p><div class="slider-controls"><button id="prev" aria-label="Destino anterior">←</button><button id="next" aria-label="Destino siguiente">→</button></div></div>
+      </div>
+      <div class="destination-track" id="destination-track">
+        <article class="destination-card reveal" data-scene="ocean">
+          <img src="assets/cabo-verde.webp" alt="Costa volcánica de Santo Antão en Cabo Verde" loading="lazy">
+          <div class="card-top"><span>01</span><span>ÁFRICA</span></div>
+          <div class="card-content"><p>Cabo Verde</p><h3>Santo Antão</h3><div class="card-details"><span>8 días · 7 noches</span><strong>Desde USD 1.650</strong></div></div>
+          <div class="card-reveal"><p>Caminos sobre acantilados, valles verdes y pueblos que miran al Atlántico más profundo.</p><a href="#contacto">Ver itinerario ↗</a></div>
+        </article>
+        <article class="destination-card reveal" data-scene="tropical">
+          <img src="assets/cartagena.webp" alt="Calle colonial de Cartagena de Indias" loading="lazy">
+          <div class="card-top"><span>02</span><span>SURAMÉRICA</span></div>
+          <div class="card-content"><p>Colombia</p><h3>Cartagena</h3><div class="card-details"><span>6 días · 5 noches</span><strong>Desde USD 990</strong></div></div>
+          <div class="card-reveal"><p>Balcones floridos, cocina caribeña y tardes doradas recorriendo la ciudad amurallada.</p><a href="#contacto">Ver itinerario ↗</a></div>
+        </article>
+        <article class="destination-card reveal" data-scene="rain">
+          <img src="assets/tokyo.webp" alt="Tokio iluminado al anochecer después de la lluvia" loading="lazy">
+          <div class="card-top"><span>03</span><span>ASIA</span></div>
+          <div class="card-content"><p>Japón</p><h3>Tokio</h3><div class="card-details"><span>9 días · 8 noches</span><strong>Desde USD 2.790</strong></div></div>
+          <div class="card-reveal"><p>Arquitectura, sabores nocturnos y barrios que cambian de personalidad en cada estación.</p><a href="#contacto">Ver itinerario ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="manifesto section" id="nosotros">
+      <p class="kicker reveal">Nuestra forma de viajar</p>
+      <blockquote class="reveal">No coleccionamos destinos.<br>Coleccionamos <em>historias.</em></blockquote>
+      <p class="manifesto-copy reveal">Creemos que un gran viaje no se mide en kilómetros, sino en aquello que cambia dentro de ti. Por eso diseñamos cada ruta con tiempo, cuidado y personas que conocen de verdad el lugar.</p>
+      <div class="manifesto-stats reveal"><div><strong>67+</strong><span>Años creando<br>historias</span></div><div><strong>38</strong><span>Destinos<br>seleccionados</span></div><div><strong>4.7</strong><span>Estrellas de<br>calificacion</span></div></div>
+    </section>
+
+    <section class="experiences section" id="experiencias">
+      <div class="section-intro reveal"><div><p class="kicker dark">Viaja a tu manera</p><h2>EXPERIENCIAS<br><em>CON PROPÓSITO</em></h2></div></div>
+      <div class="experience-grid">
+        <article class="experience experience-large reveal"><div class="experience-bg exp-adventure"></div><span>01</span><div><p>Aventura insular</p><h3>Entre volcanes y mar</h3><a href="#contacto">Explorar experiencias →</a></div></article>
+        <article class="experience reveal"><div class="experience-bg exp-culture"></div><span>02</span><div><p>Cultura caribeña</p><h3>Vive como local</h3><a href="#contacto">Explorar experiencias →</a></div></article>
+        <article class="experience reveal"><div class="experience-bg exp-slow"></div><span>03</span><div><p>Ciudad infinita</p><h3>Tokio de noche</h3><a href="#contacto">Explorar experiencias →</a></div></article>
+      </div>
+    </section>
+
+    <section class="contact" id="contacto">
+      <div class="contact-copy reveal"><p class="kicker">Tu próximo viaje empieza aquí</p><h2>¿A DÓNDE<br><em>QUIERES IR?</em></h2><p>Cuéntanos qué imaginas y uno de nuestros diseñadores de viaje te contactará para crear una propuesta a tu medida.</p></div>
+      <form class="travel-form reveal" id="travel-form">
+        <label><span>Nombre</span><input name="name" required placeholder="¿Cómo te llamas?"></label>
+        <label><span>Correo</span><input type="email" name="email" required placeholder="tu@email.com"></label>
+        <label><span>Destino de interés</span><select name="destination" required><option value="">Selecciona un destino</option><option>Islandia</option><option>Cabo Verde</option><option>Cartagena</option><option>Tokio</option><option>Otro destino</option></select></label>
+        <label><span>¿Con quién viajas?</span><select name="travelers" required><option value="">Selecciona una opción</option><option>Solo/a</option><option>En pareja</option><option>En familia</option><option>Con amigos</option></select></label>
+        <label class="full"><span>Cuéntanos un poco más</span><textarea name="message" rows="3" placeholder="Fechas aproximadas, número de viajeros, qué te gustaría vivir..."></textarea></label>
+        <button type="submit">Comenzar mi viaje <span>↗</span></button>
+      </form>
+    </section>
+  </main>
+
+  <footer><a class="logo" href="#inicio"><span>W</span> wander.</a><p>Viaja lejos. Vuelve distinto.</p><div><a href="#">Instagram</a><a href="#">WhatsApp</a><a href="#">Correo</a></div><small>© 2026 Wander Travel Co.</small></footer>
+  <div class="toast" role="status" aria-live="polite">¡Tu próxima historia ya comenzó! Te contactaremos muy pronto.</div>
+  <script src="script.js" defer></script>
+</body>
+</html>

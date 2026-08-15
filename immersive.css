@@ -1,0 +1,49 @@
+.hero{--hero-x:0px;--hero-y:0px;overflow:hidden;background:none}
+.hero:before{content:"";position:absolute;inset:-4%;background:url("assets/iceland-hero.webp") center/cover;transform:translate3d(var(--hero-x),var(--hero-y),0) scale(1.06);transition:transform .18s linear;will-change:transform}
+.hero-shade{z-index:1}.hero-content,.hero-meta,.scroll-label{z-index:3}
+.hero:after{content:"";position:absolute;z-index:2;inset:0;pointer-events:none;background:radial-gradient(circle at 72% 28%,rgba(255,215,153,.16),transparent 25%);mix-blend-mode:screen;animation:breatheLight 5s ease-in-out infinite alternate}
+.hero-nature{position:absolute;z-index:2;inset:0;overflow:hidden;pointer-events:none}
+.moving-clouds{position:absolute;inset:5% -15% auto;width:75%;height:26%;opacity:.16;background:radial-gradient(ellipse at 20% 50%,#dce4e4 0,transparent 48%),radial-gradient(ellipse at 68% 35%,#fff 0,transparent 43%);filter:blur(18px);animation:cloudTravel 24s linear infinite;mix-blend-mode:screen}
+.living-waterfall{position:absolute;left:82.6%;top:40.5%;width:4.7%;height:15.5%;overflow:hidden;transform:rotate(1deg);border-radius:45% 45% 55% 55%;filter:blur(1.2px);opacity:.4;mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 76%,transparent 100%);mix-blend-mode:screen}
+.living-waterfall:before,.living-waterfall:after{content:"";position:absolute;inset:-45% 5%;background:repeating-linear-gradient(93deg,transparent 0 7px,rgba(232,248,255,.62) 8px 9px,transparent 10px 15px);animation:waterFall .62s linear infinite}
+.living-waterfall:after{inset:-35% 18%;opacity:.38;filter:blur(2px);animation-duration:.43s;animation-delay:-.2s}
+.waterfall-mist{position:absolute;left:79.5%;top:52.2%;width:11%;height:6%;border-radius:50%;background:radial-gradient(ellipse,rgba(239,250,250,.38),transparent 67%);filter:blur(9px);animation:mistBreathe 2.7s ease-in-out infinite alternate;mix-blend-mode:screen}
+.wind-grass{position:absolute;bottom:-1%;height:9%;width:45%;opacity:.12;transform-origin:bottom;mask-image:linear-gradient(transparent,#000 55%);background:repeating-linear-gradient(82deg,transparent 0 13px,rgba(162,188,102,.7) 14px 15px,transparent 16px 23px);filter:blur(1.4px);animation:grassSway 2.8s ease-in-out infinite alternate;mix-blend-mode:soft-light}
+.grass-left{left:-3%}.grass-right{right:-4%;animation-delay:-1.4s;animation-duration:3.4s}
+.sun-breath{position:absolute;right:-7%;top:4%;width:45%;height:55%;border-radius:50%;background:radial-gradient(circle,rgba(255,191,113,.18),transparent 63%);animation:sunPulse 6s ease-in-out infinite alternate;mix-blend-mode:screen}
+.destinations{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#faf8f2 0%,#eef2ea 100%)}
+.destinations:before{content:"";position:absolute;z-index:-1;width:620px;height:620px;right:-260px;top:80px;border-radius:50%;background:url("assets/cabo-verde.webp") center/cover;filter:blur(75px);opacity:.1}
+.destination-track{position:relative;z-index:1;padding:18px 10px 40px;margin-inline:-10px}
+.destination-card{border-radius:220px 220px 4px 4px;box-shadow:0 12px 35px rgba(20,53,54,.1)}
+.experiences{position:relative;background:linear-gradient(180deg,#eef2ea 0%,#f2eee4 24%)}
+.experiences:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--coral),transparent);opacity:.45}
+.experience{border-radius:4px;box-shadow:0 15px 35px rgba(20,53,54,.12)}
+.contact{position:relative;background:linear-gradient(135deg,#dce9e6,#f3d9cf)}
+.destination-card{--rx:0deg;--ry:0deg;--mx:0px;--my:0px;--glow-x:50%;--glow-y:50%;transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .18s ease-out,box-shadow .35s;will-change:transform}
+.destination-card:hover{box-shadow:0 28px 60px rgba(16,48,50,.28)}
+.destination-card img{transform:scale(1.07) translate3d(var(--mx),var(--my),0);will-change:transform,translate;transition:transform .3s ease-out;animation:landscapeDrift 7s ease-in-out infinite alternate}
+.destination-card:hover img{transform:scale(1.13) translate3d(var(--mx),var(--my),0)}
+.destination-card:before{content:"";position:absolute;z-index:2;inset:0;pointer-events:none;background:radial-gradient(circle at var(--glow-x) var(--glow-y),rgba(255,255,255,.24),transparent 30%);mix-blend-mode:soft-light}
+.card-top,.card-content,.card-reveal{transform:translateZ(28px)}
+.destination-card:hover .card-content{transform:translateZ(28px) translateY(-125px)}
+.destination-card:hover .card-reveal{transform:translateZ(28px)}
+.scene-atmosphere{position:absolute;z-index:2;inset:0;overflow:hidden;pointer-events:none}
+.scene-atmosphere i{position:absolute;display:block;will-change:transform,opacity}
+[data-scene="rain"] .scene-atmosphere i{width:1px;height:34px;top:-40px;background:linear-gradient(transparent,rgba(205,231,255,.65));transform:rotate(12deg);animation:cityRain var(--speed) linear var(--delay) infinite}
+[data-scene="ocean"] .scene-atmosphere i{width:65px;height:65px;left:-80px;border-radius:50%;background:rgba(255,255,255,.1);filter:blur(12px);animation:oceanMist var(--speed) ease-in-out var(--delay) infinite}
+[data-scene="tropical"] .scene-atmosphere i{width:5px;height:5px;border-radius:50%;background:#ffd79a;box-shadow:0 0 10px #ffe4a9;animation:tropicalGlow var(--speed) ease-in-out var(--delay) infinite}
+.experience{--ex:0px;--ey:0px}.experience-bg{transform:scale(1.08) translate3d(var(--ex),var(--ey),0);will-change:transform,translate;animation:experienceDrift 9s ease-in-out infinite alternate}.experience:hover .experience-bg{transform:scale(1.14) translate3d(var(--ex),var(--ey),0)}
+.exp-adventure{background-image:url("assets/cabo-verde.webp")}.exp-culture{background-image:url("assets/cartagena.webp")}.exp-slow{background-image:url("assets/tokyo.webp");background-position:center 58%}
+@keyframes breatheLight{to{opacity:.45;transform:scale(1.08)}}
+@keyframes cloudTravel{from{transform:translate3d(-10%,0,0)}to{transform:translate3d(55%,4%,0)}}
+@keyframes waterFall{from{transform:translateY(-28%)}to{transform:translateY(38%)}}
+@keyframes mistBreathe{from{transform:translate3d(-8px,2px,0) scale(.85);opacity:.28}to{transform:translate3d(10px,-3px,0) scale(1.18);opacity:.7}}
+@keyframes grassSway{from{transform:skewX(-3deg) scaleY(.96)}to{transform:skewX(5deg) scaleY(1.04)}}
+@keyframes sunPulse{to{transform:scale(1.15) translate(-2%,3%);opacity:.55}}
+@keyframes landscapeDrift{from{translate:-3px 3px;scale:1.01}to{translate:5px -7px;scale:1.025}}
+@keyframes experienceDrift{from{translate:-4px 2px}to{translate:7px -5px}}
+@keyframes cityRain{from{transform:translate3d(0,-30px,0) rotate(12deg);opacity:0}15%{opacity:.8}to{transform:translate3d(-70px,680px,0) rotate(12deg);opacity:0}}
+@keyframes oceanMist{0%{transform:translate3d(-30px,500px,0);opacity:0}35%{opacity:.7}100%{transform:translate3d(520px,120px,0) scale(2);opacity:0}}
+@keyframes tropicalGlow{0%,100%{transform:translateY(30px);opacity:0}50%{transform:translateY(-40px);opacity:.9}}
+@media(max-width:850px){.hero:before{inset:-2%;transform:scale(1.04)}.destination-card{transform:none!important}.destination-card img{transform:scale(1.05)!important}.scene-atmosphere i:nth-child(n+7){display:none}.wind-grass{height:7%}.living-waterfall,.waterfall-mist{display:none}}
+@media(prefers-reduced-motion:reduce){.hero:before,.destination-card,.destination-card img,.experience-bg{transform:none!important;translate:none!important;transition:none}.scene-atmosphere,.hero-nature{display:none}.hero:after{animation:none}}
