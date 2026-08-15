@@ -129,13 +129,6 @@ document.querySelectorAll('.destination-card').forEach(card => {
   });
 });
 
-document.querySelectorAll('.experience').forEach(card => card.addEventListener('pointermove', event => {
-  if (window.innerWidth < 851) return;
-  const rect = card.getBoundingClientRect();
-  card.style.setProperty('--ex', `${((event.clientX - rect.left) / rect.width - .5) * -12}px`);
-  card.style.setProperty('--ey', `${((event.clientY - rect.top) / rect.height - .5) * -10}px`);
-}, { passive: true }));
-
 const toast = document.querySelector('.toast');
 let toastTimer;
 form.addEventListener('submit', event => {

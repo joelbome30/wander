@@ -17,8 +17,8 @@
 .destinations{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#faf8f2 0%,#e8f0e9 72%,#183638 72.1%,#183638 100%)}
 .destinations:before{content:"";position:absolute;z-index:-1;width:620px;height:620px;right:-260px;top:80px;border-radius:50%;background:url("assets/cabo-verde.webp") center/cover;filter:blur(75px);opacity:.1}
 .destinations:after{content:"VIVE EL DESTINO";position:absolute;z-index:-1;left:-.03em;right:0;bottom:-.07em;color:rgba(255,255,255,.055);font:600 clamp(72px,13vw,210px)/.8 Manrope,sans-serif;letter-spacing:-.08em;white-space:nowrap}
-.destination-track{position:relative;z-index:1;padding:18px 10px 115px;margin-inline:-10px;overflow-y:hidden}
-.destination-track:before{content:"PAISAJES VIVOS  •  MUEVE EL CURSOR PARA MIRAR ALREDEDOR";position:absolute;left:10px;bottom:62px;color:#b8d9d5;font:600 9px Manrope,sans-serif;letter-spacing:.18em}
+.destination-track{position:relative;z-index:1;padding:18px 10px 82px;margin-inline:-10px;overflow-y:hidden}
+.destination-track:before{content:"PAISAJES VIVOS  •  MUEVE EL CURSOR PARA MIRAR ALREDEDOR";position:absolute;left:10px;bottom:30px;color:#b8d9d5;font:600 9px Manrope,sans-serif;letter-spacing:.18em}
 .destination-card{border-radius:220px 220px 10px 10px;box-shadow:0 20px 45px rgba(10,39,40,.2);border:1px solid rgba(255,255,255,.22)}
 .destination-card:nth-child(2){margin-top:58px}
 .destination-card:nth-child(3){margin-top:22px}
@@ -38,8 +38,11 @@
 .destination-card:hover .scene-media video,.destination-card:hover .scene-media img{transform:scale(1.045)}
 .destination-card:before{content:"";position:absolute;z-index:2;inset:0;pointer-events:none;background:radial-gradient(circle at var(--glow-x) var(--glow-y),rgba(255,255,255,.24),transparent 30%);mix-blend-mode:soft-light}
 .card-top,.card-content,.card-reveal{transform:translateZ(28px)}
-.destination-card:hover .card-content{transform:translateZ(28px) translateY(-125px)}
-.destination-card:hover .card-reveal{transform:translateZ(28px)}
+.destination-card .card-content{transition:opacity .18s ease,transform .3s ease,visibility 0s}
+.destination-card .card-reveal{inset:auto 18px 18px;padding:20px;background:rgba(8,35,38,.88);border:1px solid rgba(255,255,255,.2);border-radius:8px;backdrop-filter:blur(12px);visibility:hidden;transform:translateZ(28px) translateY(14px);transition:opacity .25s ease,transform .35s ease,visibility 0s .25s}
+.destination-card:hover .card-content{opacity:0;visibility:hidden;transform:translateZ(28px) translateY(12px);transition:opacity .14s ease,transform .3s ease,visibility 0s}
+.destination-card:hover .card-reveal{opacity:1;visibility:visible;transform:translateZ(28px);transition:opacity .25s ease,transform .35s ease,visibility 0s}
+.destination-card .card-reveal p{margin-top:0}
 .scene-atmosphere{position:absolute;z-index:2;inset:0;overflow:hidden;pointer-events:none}
 .scene-atmosphere i{position:absolute;display:block;will-change:transform,opacity}
 [data-scene="rain"] .scene-atmosphere i{width:1px;height:34px;top:-40px;background:linear-gradient(transparent,rgba(205,231,255,.65));transform:rotate(12deg);animation:cityRain var(--speed) linear var(--delay) infinite}
@@ -73,13 +76,35 @@
 @media(max-width:850px){.hero-video{inset:0;width:100%;height:100%;transform:none}.destinations{background:linear-gradient(180deg,#faf8f2 0%,#e8f0e9 62%,#183638 62.1%)}.destinations .section-intro h2{font-size:clamp(40px,11.6vw,52px);letter-spacing:-.055em}.destination-track{padding-bottom:90px}.destination-card:nth-child(2),.destination-card:nth-child(3){margin-top:0}.destination-track:before{bottom:44px;max-width:75vw;line-height:1.7}.live-label{display:none}}
 @media(prefers-reduced-motion:reduce){.hero:before,.hero-video,.destination-card,.scene-media,.experience-bg{transform:none!important;translate:none!important;transition:none}.scene-atmosphere,.hero-nature{display:none}.hero:after{animation:none}}
 
+/* Customer stories */
+.testimonials{position:relative;overflow:hidden;background:linear-gradient(145deg,#f2eee4 0%,#e7efea 100%)}
+.testimonials:before{content:"“";position:absolute;right:-.02em;top:-.2em;color:rgba(24,54,56,.045);font:500 clamp(280px,38vw,570px)/1 Playfair Display,serif;pointer-events:none}
+.review-grid{position:relative;display:grid;grid-template-columns:1.08fr .92fr;grid-template-rows:1fr 1fr;gap:16px;margin-top:60px}
+.review-card{min-height:245px;padding:30px;background:rgba(250,248,242,.88);border:1px solid rgba(24,54,56,.14);box-shadow:0 14px 34px rgba(24,54,56,.07);display:flex;flex-direction:column;justify-content:space-between;transition:transform .35s ease,box-shadow .35s ease}
+.review-card:hover{transform:translateY(-7px);box-shadow:0 24px 50px rgba(24,54,56,.13)}
+.review-featured{grid-row:1/3;min-height:506px;padding:42px;background:var(--ink);color:white}
+.review-top{display:flex;justify-content:space-between;align-items:center;font:600 10px Manrope,sans-serif;letter-spacing:.12em}
+.review-stars{color:#ef826e;letter-spacing:.16em;font-size:13px}
+.review-card blockquote{margin:35px 0;font-size:clamp(25px,2.5vw,40px);line-height:1.22}
+.review-featured blockquote{font-size:clamp(35px,3.6vw,56px)}
+.review-author{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:13px;padding-top:20px;border-top:1px solid rgba(24,54,56,.16)}
+.review-featured .review-author{border-color:rgba(255,255,255,.18)}
+.review-avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--coral);color:white;font:700 11px Manrope,sans-serif}
+.review-author strong,.review-author small{display:block}.review-author strong{font-size:12px}.review-author small{margin-top:4px;color:#718485;font-size:9px}.review-featured .review-author small{color:#b7c6c4}
+.verified{font-size:8px;letter-spacing:.12em;color:#65807d}
+.review-featured .verified{color:#b8d9d5}
+.review-summary{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px;padding:23px;border:1px solid rgba(24,54,56,.14);background:rgba(255,255,255,.4)}
+.review-summary strong{font:500 35px Playfair Display,serif;color:var(--coral)}.review-summary span{font-size:10px;text-transform:uppercase;letter-spacing:.13em}.review-summary i{height:35px;border-left:1px solid rgba(24,54,56,.2);margin:0 2vw}
+@media(max-width:850px){.review-grid{grid-template-columns:1fr;grid-template-rows:auto;gap:12px;margin-top:38px}.review-featured{grid-row:auto;min-height:390px;padding:28px}.review-card{min-height:290px;padding:25px}.review-featured blockquote{font-size:35px}.review-card blockquote{font-size:27px}.review-summary{justify-content:flex-start;flex-wrap:wrap}.review-summary i{height:1px;width:100%;border:0;border-top:1px solid rgba(24,54,56,.2);margin:3px 0}.verified{display:none}}
+@media(hover:none){.destination-card:hover .card-content{opacity:1;visibility:visible;transform:translateZ(28px)}.destination-card:hover .card-reveal{opacity:0;visibility:hidden}.review-card:hover{transform:none}}
+
 /* Interaction and rendering budget */
 .destination-card[role="button"]{cursor:pointer}
 .destination-card[role="button"]:focus-visible{outline:3px solid var(--coral);outline-offset:5px}
 .travel-form{scroll-margin-top:92px}
 .travel-form label.destination-picked select{border-color:var(--coral);background:rgba(237,112,93,.08);animation:destinationPicked .75s ease}
 .travel-form label.destination-picked>span:after{content:"  ✓ SELECCIONADO";color:var(--coral);font-weight:700}
-.manifesto,.experiences,.contact,footer{content-visibility:auto;contain-intrinsic-size:auto 780px}
+.manifesto,.testimonials,.contact,footer{content-visibility:auto;contain-intrinsic-size:auto 780px}
 footer{grid-template-columns:1fr 1fr auto}
 @keyframes destinationPicked{50%{box-shadow:0 8px 0 -6px rgba(237,112,93,.45)}}
-@media(max-width:850px){footer{grid-template-columns:1fr;contain-intrinsic-size:auto 230px}.manifesto,.experiences,.contact{contain-intrinsic-size:auto 900px}}
+@media(max-width:850px){footer{grid-template-columns:1fr;contain-intrinsic-size:auto 230px}.manifesto,.testimonials,.contact{contain-intrinsic-size:auto 900px}}
