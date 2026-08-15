@@ -167,28 +167,22 @@ if (precisePointer.matches && !reduceMotion) {
   document.documentElement.addEventListener('mouseleave', () => travelCursor.classList.remove('is-visible'));
 }
 
-const secretSequence = ['ArrowLeft', 'ArrowRight', 'Shift', 'Enter'];
+const secretCombination = ['ArrowLeft', 'ArrowRight', 'Shift', 'Enter'];
 const shipStatus = document.querySelector('.kickass-status');
 const shipStatusTitle = shipStatus.querySelector('span');
 const shipStatusProgress = shipStatus.querySelector('strong');
 const shipStatusCopy = shipStatus.querySelector('small');
-let secretIndex = 0;
-let secretTimer;
+const heldSecretKeys = new Set();
+let combinationLatched = false;
+let shipLaunching = false;
 let statusTimer;
 
 function renderSecretProgress() {
   shipStatusTitle.textContent = 'NAVE SECRETA';
-  shipStatusCopy.textContent = 'SECUENCIA DETECTADA';
+  shipStatusCopy.textContent = 'MANTÉN LAS CUATRO TECLAS AL MISMO TIEMPO';
   shipStatus.classList.remove('is-launched');
-  shipStatusProgress.textContent = secretSequence.map((_, index) => index < secretIndex ? '●' : '◌').join(' ');
+  shipStatusProgress.textContent = secretCombination.map(key => heldSecretKeys.has(key) ? '●' : '◌').join(' ');
   shipStatus.classList.add('is-visible');
-}
-
-function resetSecretSequence(hide = true) {
-  secretIndex = 0;
-  clearTimeout(secretTimer);
-  shipStatusProgress.textContent = '◌ ◌ ◌ ◌';
-  if (hide) shipStatus.classList.remove('is-visible');
 }
 
 function showShipMessage(title, copy, launched = false) {
@@ -201,10 +195,11 @@ function showShipMessage(title, copy, launched = false) {
 }
 
 function launchDestroyerShip() {
-  if (window.KICKASSGAME) {
+  if (window.KICKASSGAME || shipLaunching) {
     showShipMessage('NAVE YA DESPLEGADA', 'FLECHAS + ESPACIO · ESC PARA SALIR', true);
     return;
   }
+  shipLaunching = true;
   document.querySelector('#kickass-secret-loader')?.remove();
   showShipMessage('ABRIENDO HANGAR', 'CONECTANDO CON KICK ASS…');
   window.KICKASSVERSION = '2.0';
@@ -213,10 +208,14 @@ function launchDestroyerShip() {
   loader.src = 'https://hi.kickassapp.com/kickass.js';
   loader.async = true;
   loader.onload = () => {
+    shipLaunching = false;
     document.body.classList.add('kickass-active');
     showShipMessage('NAVE DESTRUCTORA ACTIVADA', 'FLECHAS PARA VOLAR · ESPACIO PARA DISPARAR · ESC PARA SALIR', true);
   };
-  loader.onerror = () => showShipMessage('NO SE PUDO ABRIR EL HANGAR', 'REVISA TU CONEXIÓN E INTENTA LA SECUENCIA OTRA VEZ');
+  loader.onerror = () => {
+    shipLaunching = false;
+    showShipMessage('NO SE PUDO ABRIR EL HANGAR', 'REVISA TU CONEXIÓN E INTENTA LA COMBINACIÓN OTRA VEZ');
+  };
   document.body.appendChild(loader);
 }
 
@@ -228,25 +227,29 @@ document.addEventListener('keydown', event => {
     }, 80);
     return;
   }
-  if (event.repeat || (event.target instanceof Element && event.target.matches('input, textarea, select')) || window.KICKASSGAME) return;
-  const expectedKey = secretSequence[secretIndex];
-  if (event.key === expectedKey) {
-    event.preventDefault();
-    secretIndex += 1;
-    renderSecretProgress();
-    clearTimeout(secretTimer);
-    secretTimer = setTimeout(() => resetSecretSequence(), 3200);
-    if (secretIndex === secretSequence.length) {
-      resetSecretSequence(false);
-      launchDestroyerShip();
-    }
+  if ((event.target instanceof Element && event.target.matches('input, textarea, select')) || window.KICKASSGAME || shipLaunching) return;
+  if (!secretCombination.includes(event.key)) return;
+  event.preventDefault();
+  if (event.repeat) return;
+  heldSecretKeys.add(event.key);
+  renderSecretProgress();
+  if (!combinationLatched && secretCombination.every(key => heldSecretKeys.has(key))) {
+    combinationLatched = true;
+    launchDestroyerShip();
+  }
+}, true);
+
+document.addEventListener('keyup', event => {
+  if (!secretCombination.includes(event.key)) return;
+  heldSecretKeys.delete(event.key);
+  if (combinationLatched || shipLaunching || window.KICKASSGAME) {
+    if (!heldSecretKeys.size) combinationLatched = false;
     return;
   }
-  if (event.key === secretSequence[0]) {
-    event.preventDefault();
-    secretIndex = 1;
-    renderSecretProgress();
-    return;
+  if (heldSecretKeys.size) renderSecretProgress();
+  else {
+    combinationLatched = false;
+    shipStatusProgress.textContent = '◌ ◌ ◌ ◌';
+    shipStatus.classList.remove('is-visible');
   }
-  resetSecretSequence();
 }, true);
