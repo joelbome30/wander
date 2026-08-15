@@ -167,7 +167,7 @@ if (precisePointer.matches && !reduceMotion) {
   document.documentElement.addEventListener('mouseleave', () => travelCursor.classList.remove('is-visible'));
 }
 
-const secretSequence = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Alt', 'Enter'];
+const secretSequence = ['ArrowLeft', 'ArrowRight', 'Alt', 'Enter'];
 const shipStatus = document.querySelector('.kickass-status');
 const shipStatusTitle = shipStatus.querySelector('span');
 const shipStatusProgress = shipStatus.querySelector('strong');
@@ -187,7 +187,7 @@ function renderSecretProgress() {
 function resetSecretSequence(hide = true) {
   secretIndex = 0;
   clearTimeout(secretTimer);
-  shipStatusProgress.textContent = '◌ ◌ ◌ ◌ ◌ ◌';
+  shipStatusProgress.textContent = '◌ ◌ ◌ ◌';
   if (hide) shipStatus.classList.remove('is-visible');
 }
 
