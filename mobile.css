@@ -1,4 +1,78 @@
 @media (max-width: 850px) {
+  html { scroll-padding-top: 66px; }
+
+  .site-header,
+  .site-header.scrolled {
+    height: 66px;
+    padding-inline: 20px;
+    background: rgba(10, 38, 40, .97);
+    box-shadow: 0 8px 28px rgba(4, 24, 26, .2);
+  }
+
+  .site-header .logo { font-size: 19px; }
+  .site-header .logo span { width: 34px; height: 34px; }
+  .site-header.open { padding: 15px 20px 0; }
+  .site-header.open nav { gap: 20px; padding: 25px 0 30px; }
+
+  .hero {
+    min-height: 680px;
+    padding: 100px 22px 105px;
+    align-items: center;
+  }
+
+  .hero h1 { font-size: clamp(50px, 15vw, 66px); line-height: .92; }
+  .hero-description { font-size: 14px; line-height: 1.6; max-width: 330px; }
+  .primary-button { width: 100%; max-width: 345px; justify-content: space-between; }
+
+  .trust-strip { padding: 15px 20px; gap: 25px; }
+  .section { padding: 72px 22px; }
+
+  .destinations .section-intro h2 {
+    font-size: clamp(40px, 11.6vw, 50px);
+    white-space: nowrap;
+  }
+
+  .intro-side { margin-top: 22px; }
+  .intro-side > p { font-size: 13px; margin-bottom: 0; }
+  .destination-track {
+    grid-template-columns: repeat(3, min(84vw, 350px));
+    gap: 14px;
+    margin-top: 38px;
+    margin-inline: -22px;
+    padding: 8px 22px 92px;
+    scroll-padding-inline: 22px;
+  }
+
+  .destination-card {
+    height: 500px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .destination-card:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+  .card-content { left: 22px; right: 22px; bottom: 22px; }
+  .card-content h3 { font-size: 42px; }
+  .card-details { gap: 10px; }
+  .card-details strong { text-align: right; }
+
+  .manifesto blockquote { font-size: clamp(39px, 12vw, 54px); }
+  .manifesto-copy { font-size: 14px; }
+  .manifesto-stats { margin-top: 45px; padding-bottom: 5px; }
+
+  .experience-grid { grid-template-rows: 390px 285px 285px; gap: 12px; margin-top: 38px; }
+  .experience { padding: 22px; }
+  .experience h3 { font-size: 31px; }
+
+  .contact { padding: 72px 22px; gap: 42px; }
+  .contact h2 { font-size: clamp(48px, 14vw, 64px); }
+  .travel-form { padding: 24px 20px; gap: 22px; }
+  .travel-form input,
+  .travel-form select,
+  .travel-form textarea { font-size: 16px; }
+  .travel-form button { min-height: 52px; }
+
+  footer { padding-block: 38px; gap: 16px; }
+
   .hero-meta {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -16,4 +90,10 @@
   }
 
   .hero-meta small { font-size: 7px; }
+}
+
+@media (max-width: 370px) {
+  .hero h1 { font-size: 48px; }
+  .destinations .section-intro h2 { font-size: 39px; }
+  .destination-track { grid-template-columns: repeat(3, 86vw); }
 }

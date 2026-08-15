@@ -56,6 +56,7 @@ motionVideos.forEach(video => {
 if (!reduceMotion) {
   const videoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
     const video = entry.target;
+    video.dataset.inView = entry.isIntersecting ? 'true' : 'false';
     if (entry.isIntersecting) {
       prepareVideo(video);
       video.play().catch(() => {});
@@ -66,14 +67,32 @@ if (!reduceMotion) {
 
   motionVideos.forEach(video => videoObserver.observe(video));
   document.addEventListener('visibilitychange', () => {
-    motionVideos.forEach(video => document.hidden ? video.pause() : video.play().catch(() => {}));
+    motionVideos.forEach(video => {
+      if (document.hidden || video.dataset.inView !== 'true') video.pause();
+      else if (video.dataset.loaded) video.play().catch(() => {});
+    });
   });
+}
+
+const destinationSelect = document.querySelector('select[name="destination"]');
+const form = document.querySelector('#travel-form');
+
+function selectDestination(card) {
+  const destination = card.dataset.destination;
+  if (!destination || !destinationSelect) return;
+  destinationSelect.value = destination;
+  destinationSelect.dispatchEvent(new Event('change', { bubbles: true }));
+  const label = destinationSelect.closest('label');
+  label.classList.remove('destination-picked');
+  requestAnimationFrame(() => label.classList.add('destination-picked'));
+  form.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
 }
 
 document.querySelectorAll('.destination-card').forEach(card => {
   const atmosphere = document.createElement('div');
   atmosphere.className = 'scene-atmosphere';
-  for (let i = 0; i < 12; i += 1) {
+  const particleCount = window.innerWidth < 851 ? 5 : 8;
+  for (let i = 0; i < particleCount; i += 1) {
     const particle = document.createElement('i');
     particle.style.left = `${Math.random() * 100}%`;
     particle.style.top = `${Math.random() * 100}%`;
@@ -99,6 +118,15 @@ document.querySelectorAll('.destination-card').forEach(card => {
     ['--rx','--ry'].forEach(prop => card.style.setProperty(prop, '0deg'));
     ['--mx','--my'].forEach(prop => card.style.setProperty(prop, '0px'));
   });
+  card.addEventListener('click', event => {
+    event.preventDefault();
+    selectDestination(card);
+  });
+  card.addEventListener('keydown', event => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    selectDestination(card);
+  });
 });
 
 document.querySelectorAll('.experience').forEach(card => card.addEventListener('pointermove', event => {
@@ -108,12 +136,6 @@ document.querySelectorAll('.experience').forEach(card => card.addEventListener('
   card.style.setProperty('--ey', `${((event.clientY - rect.top) / rect.height - .5) * -10}px`);
 }, { passive: true }));
 
-const track = document.querySelector('#destination-track');
-const cardWidth = () => track.querySelector('.destination-card').getBoundingClientRect().width + 20;
-document.querySelector('#next').addEventListener('click', () => track.scrollBy({ left: cardWidth(), behavior: 'smooth' }));
-document.querySelector('#prev').addEventListener('click', () => track.scrollBy({ left: -cardWidth(), behavior: 'smooth' }));
-
-const form = document.querySelector('#travel-form');
 const toast = document.querySelector('.toast');
 let toastTimer;
 form.addEventListener('submit', event => {

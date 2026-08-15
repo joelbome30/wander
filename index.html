@@ -27,6 +27,7 @@
   <main>
     <section class="hero" id="inicio">
       <video class="hero-video motion-video" muted loop playsinline preload="metadata" poster="assets/iceland-hero.webp" aria-hidden="true">
+        <source src="assets/hero-motion-mobile.mp4" type="video/mp4" media="(max-width: 850px)">
         <source src="assets/hero-motion.mp4" type="video/mp4">
       </video>
       <div class="hero-shade"></div>
@@ -53,35 +54,35 @@
     <section class="destinations section" id="destinos">
       <div class="section-intro reveal">
         <div><p class="kicker dark">Explora</p><h2>LUGARES<br><em>INTERESANTES</em></h2></div>
-        <div class="intro-side"><p>Una selección de lugares que despiertan algo en ti. Elige el destino; nosotros diseñamos el resto.</p><div class="slider-controls"><button id="prev" aria-label="Destino anterior">←</button><button id="next" aria-label="Destino siguiente">→</button></div></div>
+        <div class="intro-side"><p>Una selección de lugares que despiertan algo en ti. Elige el destino; nosotros diseñamos el resto.</p></div>
       </div>
       <div class="destination-track" id="destination-track">
-        <article class="destination-card reveal" data-scene="ocean">
+        <article class="destination-card reveal" data-scene="ocean" data-destination="Cabo Verde" role="button" tabindex="0" aria-label="Seleccionar Cabo Verde como destino">
           <div class="scene-media">
             <img src="assets/cabo-verde.webp" alt="Costa volcánica de Santo Antão en Cabo Verde" loading="lazy">
             <video class="motion-video" muted loop playsinline preload="none" poster="assets/cabo-verde.webp" aria-hidden="true"><source data-src="assets/ocean-motion.mp4" type="video/mp4"></video>
           </div>
           <div class="card-top"><span>01</span><span class="live-label">● EN MOVIMIENTO</span><span>ÁFRICA</span></div>
           <div class="card-content"><p>Cabo Verde</p><h3>Santo Antão</h3><div class="card-details"><span>8 días · 7 noches</span><strong>Desde USD 1.650</strong></div></div>
-          <div class="card-reveal"><p>Caminos sobre acantilados, valles verdes y pueblos que miran al Atlántico más profundo.</p><a href="#contacto">Ver itinerario ↗</a></div>
+          <div class="card-reveal"><p>Caminos sobre acantilados, valles verdes y pueblos que miran al Atlántico más profundo.</p><a href="#contacto">Elegir este destino ↗</a></div>
         </article>
-        <article class="destination-card reveal" data-scene="tropical">
+        <article class="destination-card reveal" data-scene="tropical" data-destination="Cartagena" role="button" tabindex="0" aria-label="Seleccionar Cartagena como destino">
           <div class="scene-media">
             <img src="assets/cartagena.webp" alt="Calle colonial de Cartagena de Indias" loading="lazy">
             <video class="motion-video" muted loop playsinline preload="none" poster="assets/cartagena.webp" aria-hidden="true"><source data-src="assets/colonial-motion.mp4" type="video/mp4"></video>
           </div>
           <div class="card-top"><span>02</span><span class="live-label">● EN MOVIMIENTO</span><span>SURAMÉRICA</span></div>
           <div class="card-content"><p>Colombia</p><h3>Cartagena</h3><div class="card-details"><span>6 días · 5 noches</span><strong>Desde USD 990</strong></div></div>
-          <div class="card-reveal"><p>Balcones floridos, cocina caribeña y tardes doradas recorriendo la ciudad amurallada.</p><a href="#contacto">Ver itinerario ↗</a></div>
+          <div class="card-reveal"><p>Balcones floridos, cocina caribeña y tardes doradas recorriendo la ciudad amurallada.</p><a href="#contacto">Elegir este destino ↗</a></div>
         </article>
-        <article class="destination-card reveal" data-scene="rain">
+        <article class="destination-card reveal" data-scene="rain" data-destination="Tokio" role="button" tabindex="0" aria-label="Seleccionar Tokio como destino">
           <div class="scene-media">
             <img src="assets/tokyo.webp" alt="Tokio iluminado al anochecer después de la lluvia" loading="lazy">
             <video class="motion-video" muted loop playsinline preload="none" poster="assets/tokyo.webp" aria-hidden="true"><source data-src="assets/tokyo-motion.mp4" type="video/mp4"></video>
           </div>
           <div class="card-top"><span>03</span><span class="live-label">● EN MOVIMIENTO</span><span>ASIA</span></div>
           <div class="card-content"><p>Japón</p><h3>Tokio</h3><div class="card-details"><span>9 días · 8 noches</span><strong>Desde USD 2.790</strong></div></div>
-          <div class="card-reveal"><p>Arquitectura, sabores nocturnos y barrios que cambian de personalidad en cada estación.</p><a href="#contacto">Ver itinerario ↗</a></div>
+          <div class="card-reveal"><p>Arquitectura, sabores nocturnos y barrios que cambian de personalidad en cada estación.</p><a href="#contacto">Elegir este destino ↗</a></div>
         </article>
       </div>
     </section>
@@ -115,7 +116,7 @@
     </section>
   </main>
 
-  <footer><a class="logo" href="#inicio"><span>W</span> wander.</a><p>Viaja lejos. Vuelve distinto.</p><div><a href="#">Instagram</a><a href="#">WhatsApp</a><a href="#">Correo</a></div><small>© 2026 Wander Travel Co.</small></footer>
+  <footer><a class="logo" href="#inicio"><span>W</span> wander.</a><p>Viaja lejos. Vuelve distinto.</p><small>© 2026 Wander Travel Co.</small></footer>
   <div class="toast" role="status" aria-live="polite">¡Tu próxima historia ya comenzó! Te contactaremos muy pronto.</div>
   <script src="script.js" defer></script>
 </body>
